@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SolarDrone — Drón alapú napelem vizsgálat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor"></div>
+
+  <!-- LOADING OVERLAY -->
+  <div id="loader"><span>Betöltés...</span></div>
+
+  <!-- NAVIGATION -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">SolarDrone</a>
+      <div class="nav-links">
+        <a href="#services">Szolgáltatások</a>
+        <a href="#references">Referenciák</a>
+        <a href="#cta">Kapcsolat</a>
+      </div>
+      <button class="nav-cta">Kérjen ajánlatot</button>
+    </div>
+  </nav>
+
+  <!-- BOTTOM TICKER -->
+  <div id="ticker">
+    <div class="ticker-track">
+      <span class="ticker-text">TERMOGRÁFIÁS VIZSGÁLAT&nbsp;&nbsp;·&nbsp;&nbsp;48 ÓRÁS ÁTFUTÁS&nbsp;&nbsp;·&nbsp;&nbsp;GPS-KOORDINÁLT HIBATÉRKÉP&nbsp;&nbsp;·&nbsp;&nbsp;99.2% PONTOSSÁG&nbsp;&nbsp;·&nbsp;&nbsp;DRÓN ALAPÚ FELMÉRÉS&nbsp;&nbsp;·&nbsp;&nbsp;STRUKTURÁLT JELENTÉS&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+      <span class="ticker-text">TERMOGRÁFIÁS VIZSGÁLAT&nbsp;&nbsp;·&nbsp;&nbsp;48 ÓRÁS ÁTFUTÁS&nbsp;&nbsp;·&nbsp;&nbsp;GPS-KOORDINÁLT HIBATÉRKÉP&nbsp;&nbsp;·&nbsp;&nbsp;99.2% PONTOSSÁG&nbsp;&nbsp;·&nbsp;&nbsp;DRÓN ALAPÚ FELMÉRÉS&nbsp;&nbsp;·&nbsp;&nbsp;STRUKTURÁLT JELENTÉS&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- PROGRESS BAR -->
+  <div id="progress-bar"><div class="fill"></div></div>
+
+  <!-- CHAPTER DOTS -->
+  <div id="chapter-dots">
+    <div class="dot active" data-ch="0"></div>
+    <div class="dot" data-ch="1"></div>
+    <div class="dot" data-ch="2"></div>
+    <div class="dot" data-ch="3"></div>
+    <div class="dot" data-ch="4"></div>
+  </div>
+
+  <!-- SCROLL HINT -->
+  <div id="scroll-hint">
+    <span>Scroll</span>
+    <div class="line"></div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SCROLL STORYTELLING SECTION -->
+  <!-- ============================================================ -->
+  <section id="scroll-section">
+    <div id="sticky-frame">
+
+      <!-- LEFT PANEL (3D + overlays) -->
+      <div id="left-panel">
+        <!-- Paper grain SVG -->
+        <svg class="grain-overlay" aria-hidden="true">
+          <filter id="grain-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" />
+            <feColorMatrix type="saturate" values="0" />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#grain-filter)" />
+        </svg>
+
+        <!-- Three.js canvas injected here by JS -->
+        <canvas id="drone-canvas"></canvas>
+
+        <!-- Thermal overlay -->
+        <div id="thermal-overlay"></div>
+
+        <!-- Report mockup -->
+        <div id="report-mockup">
+          <div class="rm-logo">SolarDrone</div>
+          <div class="rm-label">Termográfiás vizsgálati jelentés</div>
+          <div class="rm-divider"></div>
+          <div class="rm-row"><span class="label">Helyszín</span><span class="value">Székesfehérvár Ipari Park</span></div>
+          <div class="rm-row"><span class="label">Dátum</span><span class="value">2025. november 14.</span></div>
+          <div class="rm-row"><span class="label">Megvizsgált panelek</span><span class="value">2,340</span></div>
+          <div class="rm-row"><span class="label">Azonosított hibák</span><span class="value">23</span></div>
+          <div class="rm-divider"></div>
+          <span class="rm-badge">Letölthető PDF</span>
+        </div>
+
+        <!-- Portal mockup -->
+        <div id="portal-mockup">
+          <div class="pm-logo">SolarDrone</div>
+          <div class="pm-label">Adja meg az egyedi kódját</div>
+          <input class="pm-input" type="text" placeholder="SD-XXXX-XXXX" disabled />
+          <button class="pm-btn">Dokumentum megnyitása</button>
+          <div class="pm-caption">A kód az Ön emailjére érkezett.</div>
+        </div>
+      </div>
+
+      <!-- RIGHT PANEL (chapter text) -->
+      <div id="right-panel">
+        <div class="chapter-inner">
+
+          <!-- Chapter 0 -->
+          <div class="chapter active" data-chapter="0">
+            <div class="ch-number">01 — A helyszín</div>
+            <h2>
+              <span class="line sz96 bold">Megér-</span>
+              <span class="line sz72 italic">kezünk.</span>
+            </h2>
+            <p>A csapat megérkezik, időjárás ellenőrizve, felszerelés kalibrálva. Minden rendszer zöld.</p>
+          </div>
+
+          <!-- Chapter 1 -->
+          <div class="chapter" data-chapter="1">
+            <div class="ch-number">02 — A repülés</div>
+            <h2>
+              <span class="line sz96 bold">Minden</span>
+              <span class="line sz64">sort végig-</span>
+              <span class="line sz80 italic">pásztázunk.</span>
+            </h2>
+            <p>A drón precíz rácsban repül. A termográfiás kamera rögzít minden anomáliát.</p>
+          </div>
+
+          <!-- Chapter 2 -->
+          <div class="chapter" data-chapter="2">
+            <div class="ch-number">03 — A hiba</div>
+            <h2>
+              <span class="line sz80 bold">Amit nem lát</span>
+              <span class="line sz112 italic">a szem.</span>
+            </h2>
+            <p>Hotspotok, bypass diódahibák, szennyeződések — mindegyik azonosítva, GPS-koordinálva.</p>
+          </div>
+
+          <!-- Chapter 3 -->
+          <div class="chapter" data-chapter="3">
+            <div class="ch-number">04 — A jelentés</div>
+            <h2>
+              <span class="line sz96 bold">48 órán</span>
+              <span class="line sz120 italic">belül.</span>
+            </h2>
+            <p>Strukturált jegyzőkönyv fotóbizonyítékkal és GPS-koordinátákkal.</p>
+          </div>
+
+          <!-- Chapter 4 -->
+          <div class="chapter" data-chapter="4">
+            <div class="ch-number">05 — A hozzáférés</div>
+            <h2>
+              <span class="line sz88 bold">Egy kód.</span>
+              <span class="line sz64">Azonnali</span>
+              <span class="line sz88 italic">hozzáférés.</span>
+            </h2>
+            <p>Nincs fiók. Egyedi kód emailen. Egy kattintás — és az ügyfél letölti a teljes jelentést.</p>
+            <a href="#cta" class="ch-cta">Kérjen felmérést →</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- STATS -->
+  <!-- ============================================================ -->
+  <section id="stats">
+    <div class="stats-inner">
+      <div class="stat">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">Megvizsgált rendszer</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">48ó</div>
+        <div class="stat-label">Átfutási idő</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">99.2%</div>
+        <div class="stat-label">Hibafelismerési pontosság</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SERVICES -->
+  <!-- ============================================================ -->
+  <section id="services">
+    <div class="services-inner">
+      <div class="service">
+        <div class="svc-number">01</div>
+        <h3>Termográfiás Vizsgálat</h3>
+        <p>Hőkamerás felvételek precíz elemzése. Hotspotok, bypass diódahibák és elektromos rendellenességek azonosítása.</p>
+      </div>
+      <div class="service">
+        <div class="svc-number">02</div>
+        <h3>Vizuális Dokumentáció</h3>
+        <p>Nagy felbontású légi felvételek. Mechanikai sérülések, szennyeződések és szerelési hibák feltérképezése.</p>
+      </div>
+      <div class="service">
+        <div class="svc-number">03</div>
+        <h3>Strukturált Jelentés</h3>
+        <p>GPS-címkézett hibakatalógus súlyossági besorolással. Fotóbizonyítékok és beavatkozási javaslatok.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- REFERENCES -->
+  <!-- ============================================================ -->
+  <section id="references">
+    <div class="ref-inner">
+      <h2>Referenciák</h2>
+      <div class="ref-grid">
+        <div class="ref-card">
+          <span class="ghost-number">01</span>
+          <h4>Székesfehérvár Ipari Park</h4>
+          <div class="ref-location">Székesfehérvár</div>
+          <div class="ref-finding">23 bypass diódahiba azonosítva</div>
+          <div class="ref-date">2025. November</div>
+        </div>
+        <div class="ref-card">
+          <span class="ghost-number">02</span>
+          <h4>Kecskemét Déli Napelemfarm</h4>
+          <div class="ref-location">Kecskemét</div>
+          <div class="ref-finding">147 panel hotspot kimutatása</div>
+          <div class="ref-date">2025. Október</div>
+        </div>
+        <div class="ref-card">
+          <span class="ghost-number">03</span>
+          <h4>Debrecen Logisztikai Központ</h4>
+          <div class="ref-location">Debrecen</div>
+          <div class="ref-finding">Árnyékolási probléma feltérképezése</div>
+          <div class="ref-date">2025. Szeptember</div>
+        </div>
+        <div class="ref-card">
+          <span class="ghost-number">04</span>
+          <h4>Budapest Office Complex</h4>
+          <div class="ref-location">Budapest</div>
+          <div class="ref-finding">8 meghibásodott inverter lokalizálása</div>
+          <div class="ref-date">2025. Augusztus</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CTA -->
+  <!-- ============================================================ -->
+  <section id="cta">
+    <div class="cta-inner">
+      <h2>Tudja meg, <em>mit rejt</em> a rendszere.</h2>
+      <form class="cta-form" onsubmit="return false;">
+        <input type="email" placeholder="email@ceg.hu" />
+        <button type="submit">Küldés</button>
+      </form>
+      <div class="cta-phone">vagy hívjon minket: <strong>+36 30 123 4567</strong></div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER -->
+  <!-- ============================================================ -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-quote">
+        <p>„Amit nem lát a szem, megmutatja a drón."</p>
+      </div>
+      <div class="footer-grid">
+        <div>
+          <div class="fg-logo">SolarDrone</div>
+          <div class="fg-tagline">Precíziós drón alapú napelem vizsgálat termográfiával.</div>
+        </div>
+        <div>
+          <div class="fg-heading">Menü</div>
+          <div class="fg-links">
+            <a href="#services">Szolgáltatások</a>
+            <a href="#references">Referenciák</a>
+            <a href="#cta">Kapcsolat</a>
+          </div>
+        </div>
+        <div>
+          <div class="fg-heading">Jogi</div>
+          <div class="fg-links">
+            <a href="#">Adatvédelem</a>
+            <a href="#">ÁSZF</a>
+            <a href="#">Impresszum</a>
+          </div>
+        </div>
+        <div>
+          <div class="fg-heading">Nyelv</div>
+          <div class="fg-lang">
+            <button class="active">HU</button>
+            <button>EN</button>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">© 2026 SolarDrone. Minden jog fenntartva.</div>
+    </div>
+  </footer>
+
+  <!-- THREE.JS CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
